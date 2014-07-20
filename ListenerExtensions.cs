@@ -7,7 +7,8 @@ namespace ANTLR4.ParserHelpers
 {
     public static class ListenerExtensions
     {
-        public static void ListenTo(this IParseTreeListener listener, ICharStream input, ITreeBuilder treeBuilder)
+        public static void ListenTo(this IParseTreeListener listener, ICharStream input, ITreeBuilder treeBuilder,
+            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners, IEnumerable<IAntlrErrorListener<IToken>> errorListeners)
         {
             if (listener == null) 
                 throw new ArgumentNullException("listener");
@@ -18,11 +19,18 @@ namespace ANTLR4.ParserHelpers
             if (treeBuilder == null)
                 throw new ArgumentNullException("treeBuilder");
 
+            if (lexerErrorListeners == null) 
+                throw new ArgumentNullException("lexerErrorListeners");
+            
+            if (errorListeners == null) 
+                throw new ArgumentNullException("errorListeners");
+
             var walker = new Walker(treeBuilder);
-            walker.Walkthrough(input, listener);
+            walker.Walkthrough(input, listener, lexerErrorListeners, errorListeners);
         }
 
-        public static void ListenTo(this IParseTreeListener listener, ICharStream input, ITreeBuilderStrategy treeBuilderStrategy)
+        public static void ListenTo(this IParseTreeListener listener, ICharStream input, ITreeBuilderStrategy treeBuilderStrategy,
+            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners, IEnumerable<IAntlrErrorListener<IToken>> errorListeners)
         {
             if (listener == null)
                 throw new ArgumentNullException("listener");
@@ -33,17 +41,30 @@ namespace ANTLR4.ParserHelpers
             if (treeBuilderStrategy == null)
                 throw new ArgumentNullException("treeBuilderStrategy");
 
+            if (lexerErrorListeners == null)
+                throw new ArgumentNullException("lexerErrorListeners");
+
+            if (errorListeners == null)
+                throw new ArgumentNullException("errorListeners");
+
             var walker = new Walker(treeBuilderStrategy);
-            walker.Walkthrough(input, listener);
+            walker.Walkthrough(input, listener, lexerErrorListeners, errorListeners);
         }
 
-        public static Action<ICharStream> Action<TTreeBuilderStrategy>(this IParseTreeListener listener)
+        public static Action<ICharStream> Action<TTreeBuilderStrategy>(this IParseTreeListener listener, 
+            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners, IEnumerable<IAntlrErrorListener<IToken>> errorListeners)
             where TTreeBuilderStrategy : ITreeBuilderStrategy, new()
         {
             if (listener == null)
                 throw new ArgumentNullException("listener");
+            
+            if (lexerErrorListeners == null)
+                throw new ArgumentNullException("lexerErrorListeners");
 
-            return input => listener.ListenTo(input, new TTreeBuilderStrategy());
+            if (errorListeners == null)
+                throw new ArgumentNullException("errorListeners");
+
+            return input => listener.ListenTo(input, new TTreeBuilderStrategy(), lexerErrorListeners, errorListeners);
         }
     }
 }

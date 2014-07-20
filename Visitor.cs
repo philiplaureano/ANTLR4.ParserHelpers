@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 
@@ -6,25 +7,29 @@ namespace ANTLR4.ParserHelpers
 {
     internal class Visitor : TreeWorker
     {
-        public Visitor(ITreeBuilder treeBuilder) : base(treeBuilder)
-        {            
-        }
-
-        public Visitor(ITreeBuilderStrategy treeBuilderStrategy) : base(new TreeBuilder(treeBuilderStrategy))
+        public Visitor(ITreeBuilder treeBuilder)
+            : base(treeBuilder)
         {
         }
 
-        public void VisitWith<TResult>(ICharStream input, IParseTreeVisitor<TResult> parseTreeVisitor)
+        public Visitor(ITreeBuilderStrategy treeBuilderStrategy)
+            : base(new TreeBuilder(treeBuilderStrategy))
         {
-            if (input == null) 
+        }
+
+        public void VisitWith<TResult>(ICharStream input, IParseTreeVisitor<TResult> parseTreeVisitor,
+            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners,
+             IEnumerable<IAntlrErrorListener<IToken>> errorListeners)
+        {
+            if (input == null)
                 throw new ArgumentNullException("input");
-            
-            if(parseTreeVisitor == null)
+
+            if (parseTreeVisitor == null)
                 throw new ArgumentNullException("parseTreeVisitor");
 
-            Func<ICharStream, IParseTree> createTree = base.CreateTree;
-            var tree = createTree(input);
-            
+            Func<ICharStream, IEnumerable<IAntlrErrorListener<int>>, IEnumerable<IAntlrErrorListener<IToken>>, IParseTree> createTree = base.CreateTree;
+            var tree = createTree(input, lexerErrorListeners, errorListeners);
+
             if (tree != null)
                 parseTreeVisitor.Visit(tree);
         }

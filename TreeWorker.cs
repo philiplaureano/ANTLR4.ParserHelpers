@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 
@@ -16,13 +17,14 @@ namespace ANTLR4.ParserHelpers
             _treeBuilder = treeBuilder;
         }
 
-        protected virtual IParseTree CreateTree(ICharStream input)
+        protected virtual IParseTree CreateTree(ICharStream input, IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners,
+            IEnumerable<IAntlrErrorListener<IToken>> errorListeners)
         {
             if (input == null) 
                 throw new ArgumentNullException("input");
 
             var builder = _treeBuilder;
-            var tree = builder.CreateTree(input);
+            var tree = builder.CreateTree(input, lexerErrorListeners, errorListeners);
 
             return tree;
         }
