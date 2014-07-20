@@ -27,8 +27,7 @@ namespace ANTLR4.ParserHelpers
             if (parseTreeVisitor == null)
                 throw new ArgumentNullException("parseTreeVisitor");
 
-            Func<ICharStream, IEnumerable<IAntlrErrorListener<int>>, IEnumerable<IAntlrErrorListener<IToken>>, IParseTree> createTree = base.CreateTree;
-            var tree = createTree(input, lexerErrorListeners, errorListeners);
+            var tree = base.CreateTree(input, lexerErrorListeners, errorListeners);
 
             if (tree != null)
                 parseTreeVisitor.Visit(tree);

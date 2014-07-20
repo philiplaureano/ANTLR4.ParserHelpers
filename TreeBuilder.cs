@@ -21,22 +21,18 @@ namespace ANTLR4.ParserHelpers
         {
             if (charStream == null) 
                 throw new ArgumentNullException("charStream");
+            
+            if (lexerErrorListeners == null) 
+                throw new ArgumentNullException("lexerErrorListeners");
+            
+            if (errorListeners == null) 
+                throw new ArgumentNullException("errorListeners");
 
-            Func<ICharStream, IEnumerable<IAntlrErrorListener<int>>, ITokenSource> createTokenSource = 
-                _strategy.CreateTokenSource;
-            Func<ITokenSource, ITokenStream> createTokenStream = _strategy.CreateTokenStream;
-            Func<ITokenStream, IEnumerable<IAntlrErrorListener<IToken>>, IParseTree> createParseTree = _strategy.CreateParseTree;
-                
-            Func<IParseTree> createTree = () =>
-            {
-                IAntlrErrorListener<int>[] antlrErrorListeners = lexerErrorListeners.ToArray();
+            var antlrErrorListeners = lexerErrorListeners.ToArray();
+            var tokenSource = _strategy.CreateTokenSource(charStream, antlrErrorListeners);
+            var tokenStream = _strategy.CreateTokenStream(tokenSource);
 
-                ITokenSource tokenSource = createTokenSource(charStream, antlrErrorListeners);
-                ITokenStream tokenStream = createTokenStream(tokenSource);
-                return createParseTree(tokenStream, errorListeners);
-            };
-
-            return createTree();
+            return _strategy.CreateParseTree(tokenStream, errorListeners);
         }
     }
 }
