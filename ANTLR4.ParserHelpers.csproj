@@ -35,6 +35,18 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\CsvParser\packages\Rx-Core.2.2.4\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\CsvParser\packages\Rx-Interfaces.2.2.4\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\CsvParser\packages\Rx-Linq.2.2.4\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\CsvParser\packages\Rx-PlatformServices.2.2.4\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +58,8 @@
     <Compile Include="ITreeBuilderStrategy.cs" />
     <Compile Include="ListenerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyntaxError.cs" />
+    <Compile Include="SyntaxErrorCollector.cs" />
     <Compile Include="TreeBuilder.cs" />
     <Compile Include="TreeBuilderStrategy.cs" />
     <Compile Include="TreeWorker.cs" />

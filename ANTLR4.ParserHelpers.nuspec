@@ -15,6 +15,11 @@
         <dependencies>
             <dependency id="Antlr4.Runtime" version="4.3.0" />
             <dependency id="Antlr4" version="4.3.0" />
+            <dependency id="Rx-Main" version="2.2.4" />
+            <dependency id="Rx-Core" version="2.2.4" />
+            <dependency id="Rx-Linq" version="2.2.4" />
+            <dependency id="Rx-Interfaces" version="2.2.4" />
+            <dependency id="Rx-PlatformServices" version="2.2.4" />
         </dependencies>
     </metadata>
     <files>
