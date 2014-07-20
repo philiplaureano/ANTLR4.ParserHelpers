@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>ANTLR4.ParserHelpers</id>
+        <version>1.0.2</version>
+        <title>ANTLR4 ParserHelpers</title>
+        <authors>Philip Laureano</authors>
+        <owners>Philip Laureano</owners>
+        <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A library that removes most of the boilerplate code for listening to and visiting ANTLR4-generated parse trees on the CLR.</description>
+        <releaseNotes />
+        <copyright>Copyright 2014 Philip Laureano</copyright>
+        <tags>antlr4 parsers</tags>
+        <dependencies>
+            <dependency id="Antlr4.Runtime" version="4.3.0" />
+            <dependency id="Antlr4" version="4.3.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Debug\ANTLR4.ParserHelpers.dll" target="lib\ANTLR4.ParserHelpers.dll" />
+        <file src="bin\Debug\ANTLR4.ParserHelpers.pdb" target="lib\ANTLR4.ParserHelpers.pdb" />
+    </files>
+</package>
