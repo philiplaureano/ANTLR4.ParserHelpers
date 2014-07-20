@@ -7,8 +7,8 @@ namespace ANTLR4.ParserHelpers
 {
     public static class VisitorExtensions
     {
-        public static void Visit<TResult>(this IParseTreeVisitor<TResult> visitor, ICharStream input, ITreeBuilder treeBuilder, 
-            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners, IEnumerable<IAntlrErrorListener<IToken>> errorListeners)
+        public static void Visit<TResult>(this IParseTreeVisitor<TResult> visitor, ICharStream input, ITreeBuilder treeBuilder,
+            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners = null, IEnumerable<IAntlrErrorListener<IToken>> errorListeners = null)
         {
             if (input == null) 
                 throw new ArgumentNullException("input");
@@ -21,7 +21,7 @@ namespace ANTLR4.ParserHelpers
         }
 
         public static void Visit<TResult>(this IParseTreeVisitor<TResult> visitor, ICharStream input, ITreeBuilderStrategy treeBuilderStrategy,
-            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners, IEnumerable<IAntlrErrorListener<IToken>> errorListeners)
+            IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners = null, IEnumerable<IAntlrErrorListener<IToken>> errorListeners = null)
         {
             if (visitor == null) 
                 throw new ArgumentNullException("visitor");
