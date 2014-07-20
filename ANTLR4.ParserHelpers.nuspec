@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>ANTLR4.ParserHelpers</id>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <title>ANTLR4 ParserHelpers</title>
         <authors>Philip Laureano</authors>
         <owners>Philip Laureano</owners>

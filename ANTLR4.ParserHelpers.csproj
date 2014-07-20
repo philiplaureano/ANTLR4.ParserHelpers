@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITreeBuilder.cs" />
     <Compile Include="ITreeBuilderStrategy.cs" />
     <Compile Include="ListenerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
