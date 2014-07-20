@@ -8,7 +8,6 @@ namespace ANTLR4.ParserHelpers
     {
         ITokenSource CreateTokenSource(ICharStream charStream, IEnumerable<IAntlrErrorListener<int>> errorListeners);
         ITokenStream CreateTokenStream(ITokenSource tokenSource);
-        IParseTree CreateParseTree(ITokenStream tokenStream, IEnumerable<IAntlrErrorListener<int>> lexerErrorListeners,             
-            IEnumerable<IAntlrErrorListener<IToken>> errorListeners);
+        IParseTree CreateParseTree(ITokenStream tokenStream, IEnumerable<IAntlrErrorListener<IToken>> errorListeners);
     }
 }
